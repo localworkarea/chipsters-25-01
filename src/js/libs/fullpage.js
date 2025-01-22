@@ -395,6 +395,19 @@ export class FullPage {
 		if (this.options.bullets && this.bulletsWrapper) {
 			this.bulletsWrapper.addEventListener('click', this.events.click);
 		}
+
+
+		// Для каждой кнопки nextArrowBtn добавляем отдельный обработчик события клика
+		const nextArrowBtns = document.querySelectorAll('.scroll__ic');
+		nextArrowBtns.forEach(nextArrowBtn => {
+			 nextArrowBtn.addEventListener('click', () => {
+					 const nextSectionId = this.activeSectionId + 1;
+					 if (nextSectionId < this.sections.length) {
+							 this.switchingSection(nextSectionId);
+					 }
+			 });
+		});
+
 	}
 	removeEvents() {
 		this.wrapper.removeEventListener('wheel', this.events.wheel);

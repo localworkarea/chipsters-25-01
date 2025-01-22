@@ -21,8 +21,12 @@
             return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
         }
     };
-    function addTouchClass() {
-        if (isMobile.any()) document.documentElement.classList.add("touch");
+    function addLoadedClass() {
+        if (!document.documentElement.classList.contains("loading")) window.addEventListener("load", (function() {
+            setTimeout((function() {
+                document.documentElement.classList.add("loaded");
+            }), 0);
+        }));
     }
     function ssr_window_esm_isObject(obj) {
         return obj !== null && typeof obj === "object" && "constructor" in obj && obj.constructor === Object;
@@ -3429,6 +3433,13 @@
             this.wrapper.addEventListener("wheel", this.events.wheel);
             this.wrapper.addEventListener("touchstart", this.events.touchdown);
             if (this.options.bullets && this.bulletsWrapper) this.bulletsWrapper.addEventListener("click", this.events.click);
+            const nextArrowBtns = document.querySelectorAll(".scroll__ic");
+            nextArrowBtns.forEach((nextArrowBtn => {
+                nextArrowBtn.addEventListener("click", (() => {
+                    const nextSectionId = this.activeSectionId + 1;
+                    if (nextSectionId < this.sections.length) this.switchingSection(nextSectionId);
+                }));
+            }));
         }
         removeEvents() {
             this.wrapper.removeEventListener("wheel", this.events.wheel);
@@ -3664,6 +3675,11 @@
     }
     const da = new DynamicAdapt("max");
     da.init();
+    const chipsButton = document.querySelector(".chips__btn");
+    if (chipsButton) chipsButton.addEventListener("click", (() => {
+        document.documentElement.classList.add("chips-fell");
+        chipsButton.classList.add("_clicked");
+    }));
     window["FLS"] = false;
-    addTouchClass();
+    addLoadedClass();
 })();

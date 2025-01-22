@@ -1,6 +1,9 @@
 // == SECTION 00 ===================================
 .sec-00 {
-  // pointer-events: none;
+  pointer-events: none;
+  .chips-fell & {
+    pointer-events: all;
+  }
   // .sec-00__body
   &__body {
   }
@@ -10,8 +13,10 @@
     height: 100%;
     position: relative;
     img {
-      // filter: blur(30px);
       transition: filter .65s ease;
+      .chips-fell & {
+        filter: blur(30px);
+      }
     }
     &::before {
       content:'';
@@ -21,6 +26,9 @@
       background-color: rgb(0, 0, 0,0.3);
       opacity: 0;
       transition: opacity .65s ease;
+      .chips-fell & {
+        opacity: 1;
+      }
     }
 	}
   // .sec-00__chips
@@ -28,42 +36,424 @@
   }
 }
 
-// .chips {
-//   position: absolute;
-//   inset: 0;
-//   z-index: 3;
-//   img {
-//     // width: 100%;
-//     // height: auto;
-//   }
-//   // .chips__btn
-//   &__btn {
-//     pointer-events: all;
-//   }
-//   // .chips__btn-img
-//   &__btn-img {
-//   }
-//   // .chips__img
-//   &__img {
-//     &.img-2 {
-//     }
-//     &.img-3 {
-//     }
-//     &.img-4 {
-//     }
-//     &.img-5 {
-//     }
-//     &.img-6 {
-//     }
-//   }
-// }
+.cloud {
+  position: absolute;
+  z-index: 6;
+  transition: all .45s ease;
+  .chips-fell & {
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-50%);
+    // transition: all .75s cubic-bezier(.43,1.79,.62,.72);
+    transition: all .75s cubic-bezier(.52,1.77,.49,.82);
+  }
+  @media (min-width:toEm(1024.98)){
+    top: 40%;
+    transform: translate(0,-50%);
+  }
+  @media (max-width: toEm(1024.98)){
+    top: 20%;
+  }
+  @media (min-width:$mobileSmall){
+    right: 10%;
+  }
+  @media (max-width:$mobileSmall){
+     right: -11%; 
+  }
+  // .cloud__sm
+  &__sm {
+    @include adaptiveValue("width", 200, 150,0,1440.98,480.98);
+    @media (min-width: toEm(820.98)){
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 0%;
+      transform: translate(-70%,-50%);
+      opacity: 0;
+      .loaded & {
+        opacity: 1;
+        transition: opacity .3s ease 0.55s;
+      }
+      .chips-fell & {
+        opacity: 0;
+        transition: opacity .1s ease 0s;
+      }
+    }
+    @media (max-width: toEm(820.98)){
+       display: none; 
+    }
+  }
+  // .cloud__img-sm
+  &__img-sm {
+    @media (min-width: toEm(820.98)){
+      width: 100%;
+      height: auto;
+    }
+  }
+  // .cloud__big
+  &__big {
+    position: relative;
+    z-index: 2;
+    transition: all .45s ease;
+    transform: scale(0);
+    opacity: 0;
+    .loaded & {
+      transform: scale(1);
+      opacity: 1;
+      transition: all .55s cubic-bezier(.52,1.77,.49,.82) 0.65s;
+    }
+    .chips-fell & {
+      transform: scale(1.27);
+      transition: all .75s cubic-bezier(.52,1.77,.49,.82) 0s;
+    }
+    .txt {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%) rotate(-5deg);
+      text-transform: uppercase;
+      width: max-content;
+      color: #fff;
+      text-align: center;
+      transition: opacit .3s ease;
+      @include adaptiveValue("font-size", 60, 40,0,1440.98,480.98);
+    }
+  }
+  // .cloud__img-big
+  &__img-big {
+    height: auto;
+    @include adaptiveValue("width", 550, 330,0,1440.98,480.98);
+  }
+  // .cloud__t-1
+  &__t-1 {
+    br {
+      &:nth-child(1) {
+        @media (min-width:$mobileSmall){
+           display: none; 
+        }
+      }
+      &:nth-child(2) {
+        @media (max-width:$mobileSmall){
+            display: none;
+        }
+      }
+    }
+    .chips-fell & {
+      opacity: 0;
+    }
+  }
+  // .cloud__t-2
+  &__t-2 {
+    opacity: 0;
+    .chips-fell & {
+      opacity: 1;
+    }
+  }
+	// .cloud__arrow
+	&__arrow {
+    position: absolute;
+    bottom: 0;
+    transform: translate(-50%,0);
+    height: auto;
+    opacity: 0;
+    .loaded & {
+      opacity: 1;
+      transition: opacity .45s ease .55s;
+    }
+    .chips-fell & {
+      opacity: 0;
+      transition: opacity .1s ease 0s;
+    }
+    @media (min-width:$mobileSmall){
+      right: 10%;
+      width: toRem(30);
+    }
+    @media (max-width:$mobileSmall){
+      right: 15%;
+      width: toRem(20);
+    }
+	}
+}
+
+%img-01 {
+  @include adaptiveValue("width", 330, 260,0,1440.98,480.98);
+  bottom: 0;
+  right: 0;
+
+}
+%img-02 {
+  @include adaptiveValue("width", 360, 280,0,1440.98,480.98);
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%,50%) rotate(-60deg);
+}
+%img-03 {
+  @include adaptiveValue("width", 200, 156,0,1440.98,480.98);
+  bottom: 50%;
+  left: 0;
+  transform: translate(-70%,50%) rotate(16deg);
+}
+%img-04 {
+  @include adaptiveValue("width", 430, 330,0,1440.98,480.98);
+  top: 0;
+  left: 0;
+  transform: translate(-60%,-60%) rotate(30deg);
+}
+%img-05 {
+  @include adaptiveValue("width", 163, 130,0,1440.98,480.98);
+  top: 0;
+  right: 0;
+}
+%img-06 {
+  @include adaptiveValue("width", 500, 400,0,1440.98,480.98);
+  bottom: 50%;
+  right: 0;
+}
+
+.chips {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+  transform: scale(1.2);
+  .loaded & {
+    transform: scale(1);
+    transition: transform .55s cubic-bezier(.52,1.77,.49,.82), opacity .45s ease;
+    transition-delay: .45s;
+  }
+  // .chips__btn
+  &__btn {
+    pointer-events: all;
+    position: absolute;
+    right: 18%;
+    z-index: 5;
+    opacity: 0;
+    transition: scale 0.3s ease, opacity .2s ease 0.45s;
+    @media (min-width:$mobileSmall){
+      bottom: -45%;
+    }
+    @media (max-width:$mobileSmall){
+      bottom: -55% 
+    }
+    .loaded & {
+      opacity: 1;
+      transition: scale 0.3s ease, opacity .2s ease 0.75s;
+      animation: shake 1.5s linear 1s infinite;
+    }
+    .chips-fell & {
+      animation-play-state: paused;
+      pointer-events: none;
+      opacity: 0;
+      transition-delay: 0s;
+    }
+    @media (any-hover: hover){
+      &:hover{
+        animation-play-state: paused;
+        scale: 1.2;
+      }
+    }
+    p {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-46%,-51%);
+      width: max-content;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 -5px 40px #450200;
+      @include adaptiveValue("font-size", 36, 30,0,1440.98,480.98);
+    }
+  }
+  // .chips__btn-img
+  &__btn-img {
+    height: auto;
+    @include adaptiveValue("width", 330, 260,0,1440.98,480.98);
+  }
+  // .chips__img
+  &__img {
+    @media (min-width:$mobileSmall){
+      position: absolute;
+      height: auto;
+      z-index: 5;
+      transition: transform .55s cubic-bezier(.52,1.77,.49,.82), opacity .45s ease 0s;
+      .chips-fell & {
+        opacity: 0;
+      }
+    }
+    @media (max-width:$mobileSmall){
+       display: none; 
+    }
+
+    &.img-1 {
+      @extend %img-01;
+      transform: translate(-20%,70%) rotate(-20deg);
+      .chips-fell & {
+        transform: translate(-20%,100%) rotate(-20deg);
+      }
+    }
+    &.img-2 {
+      @extend %img-02;
+      .chips-fell & {
+        transform: translate(-100%,100%) rotate(-60deg);
+      }
+    }
+    &.img-3 {
+      @extend %img-03;
+      .chips-fell & {
+        transform: translate(-100%,50%) rotate(16deg);
+      }
+    }
+    &.img-4 {
+      @extend %img-04;
+      .chips-fell & {
+        transform: translate(-100%,-100%) rotate(30deg);
+      }
+    }
+    &.img-5 {
+      @extend %img-05;
+      transform: translate(-60%,-60%) rotate(85deg);
+      .chips-fell & {
+        transform: translate(-100%,-100%) rotate(85deg);
+      }
+    }
+    &.img-6 {
+      @extend %img-06;
+      transform: translate(70%,50%) rotate(-8deg);
+      .chips-fell & {
+        transform: translate(100%,50%) rotate(-8deg);
+      }
+    }
+  }
+}
+
+.click-chips {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 6;
+  pointer-events: none;
+  transform-origin: 100% 50%;
+  opacity: 0;
+  transform: translate(-50%,-50%) scale(0);
+  transition: transform .75s cubic-bezier(.52,1.77,.49,.82), opacity .45s ease;
+
+  @media (min-width:toEm(820.98)){
+    aspect-ratio: 835/380;
+  }
+  @media (max-width: toEm(820.98)){
+    aspect-ratio: 390/400;
+  }
+  @media (min-width:toEm(1500.98)){
+    width: 45%;
+  }
+  @media (max-width: toEm(1500.98)) and (min-width:toEm(650.98)){
+    width: 55%;
+  }
+  @media (max-width:toEm(650.98)){
+    width: 100%;
+  }
+  .chips-fell & {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  // .cclick-chips__img
+  &__img {
+    position: absolute;
+    height: auto;
+    &.img-1 {
+      @extend %img-01;
+      transform: translate(50%,50%) rotate(-20deg);
+    }
+    &.img-2 {
+      @extend %img-02;
+    }
+    &.img-3 {
+      @extend %img-03;
+    }
+    &.img-4 {
+      @extend %img-04;
+    }
+    &.img-5 {
+      @extend %img-05;
+      right: 50%;
+      transform: translate(50%,-60%) rotate(0deg);
+    }
+    &.img-6 {
+      @extend %img-06;
+      bottom:unset;
+      top: 0;
+      @media (min-width:$mobileSmall){
+        transform: translate(60%,-40%) rotate(-8deg);
+      }
+      @media (max-width:$mobileSmall){
+        transform: translate(60%,-55%) rotate(-8deg);
+      }
+    }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  6.25% {
+    transform: rotate(10deg) translate3d(0, 0, 0);
+  }
+  12.5% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  18.75% {
+    transform: rotate(-10deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  31.25% {
+    transform: rotate(10deg) translate3d(0, 0, 0);
+  }
+  37.5% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  43.75% {
+    transform: rotate(-10deg) translate3d(0, 0, 0);
+  }
+  // пауза в этом месте --------------
+  50% { 
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+
 
 
 // == SECTION 01 ===================================
 .sec-01 {
+  &.next-section {
+    .sec-01__slider {
+      top: 50%;
+    }
+  }
+  &.active-section {
+    .sec-01__slider {
+      top: 0%;
+    }
+  }
+  &.previous-section {
+    .sec-01__slider {
+      top: -50%;
+    }
+  }
   // .sec-01__body
   &__body {
-    transition: background-color .8s ease;
+    transition: background-color .8s ease, opacity 0.1s linear 0.5s;
+      .loaded & {
+        opacity: 1 !important;
+      }
     &.slide-1 {
       background-color: $bg01;
       .bg-sec__clr {
@@ -127,10 +517,12 @@
 	// .sec-01__slider
 	&__slider {
     position: relative;
+    transition: top .75s ease;
     z-index: 2;
     overflow: visible !important;
     height: 100vh;
     height: 100svh;
+    
 	}
 	// .sec-01__wrapper
 	&__wrapper {
@@ -194,6 +586,7 @@
   // .sec-01__button
   &__button {
     position: absolute;
+    z-index: 5;
     top: 50%;
     transform: translate(0,-50%);
     border-radius: 50%;
@@ -384,20 +777,60 @@
   &__pack {
     position: relative;
     min-height: 100%;
+    transition: transform .65s cubic-bezier(.52,1.77,.49,.82);
+    transform-origin: 50% 50%;
+    
     &.pack-lt {
       @media (min-width:toEm(820.98)){
-        transform: rotate(28deg) translate(7%,-7%);
+        .swiper-slide-prev & {
+          transform: rotate(-90deg) translate(7%,-7%);
+        }
+        .swiper-slide-active & {
+          transform: rotate(28deg) translate(7%,-7%);
+        }
+        .swiper-slide-next & {
+          transform: rotate(130deg) translate(7%,-7%);
+        }
+
       }
       @media (max-width: toEm(820.98)){
           display: none;
       }
     }
     &.pack-center {
-      transform: rotate(6deg);
+      .swiper-slide-prev & {
+        @media (min-width:toEm(820.98)){
+          transform: rotate(-75deg);
+        }
+        @media (max-width:toEm(820.98)){
+          transform: rotate(30deg);
+        }
+      }
+      .swiper-slide-active & {
+        transform: rotate(6deg);
+        transition-delay: .2s;
+      }
+      .swiper-slide-next & {
+        @media (min-width:toEm(820.98)){
+          transform: rotate(90deg);
+        }
+        @media (max-width:toEm(820.98)){
+          transform: rotate(-30deg);
+        }
+      }
     }
     &.pack-rt {
       @media (min-width:toEm(820.98)){
-        transform: rotate(-24deg) translate(-35%,14%);
+        .swiper-slide-prev & {
+          transform: rotate(0deg) translate(-35%,14%);
+        }
+        .swiper-slide-active & {
+          transform: rotate(-24deg) translate(-35%,14%);
+          transition-delay: .3s;
+        }
+        .swiper-slide-next & {
+          transform: rotate(-50deg) translate(-35%,14%);
+        }
       }
       @media (max-width: toEm(820.98)){
         display: none;
@@ -457,6 +890,10 @@
 
 // == SECTION 02 ===================================
 .sec-02 {
+  .loaded & {
+    opacity: 1 !important;
+    transition: opacity 0.1s linear 0.5s;
+  }
   // .sec-02__body
   &__body {
   }
