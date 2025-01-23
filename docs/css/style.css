@@ -955,6 +955,9 @@ body {
   position: absolute;
   z-index: 5;
   left: 50%;
+  transition: opacity .3s ease
+}
+.sec-02__link-wr {
   color: #fff;
   text-transform: uppercase;
   text-align: center;
@@ -963,10 +966,38 @@ body {
   border-radius: 3.125rem;
   padding-inline: 2rem;
   padding-block: 1.375rem;
+  -webkit-animation: myAnim 2s ease 1s infinite normal forwards;
+  animation: myAnim 2s ease 1s infinite normal forwards;
   box-shadow: 0 0 20px 0 rgba(236,28,45,.5);
-  background: linear-gradient(180deg,#ff2638 0,#d11222 100%);
-  transition: opacity .3s ease;
-  pointer-events: none
+  background: linear-gradient(180deg,#ff2638 0,#d11222 100%)
+}
+@-webkit-keyframes myAnim {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1)
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
+}
+@keyframes myAnim {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1)
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
 }
 .video-youtube {
   position: relative;
@@ -1185,7 +1216,8 @@ body {
     transform: translate(50%,-50%)
   }
   .video-play .sec-02__link {
-    opacity: 0
+    opacity: 0;
+    pointer-events: none
   }
   .sec-02__link {
     bottom: 0;
@@ -1251,7 +1283,7 @@ body {
   .chips__btn-img {
     width: 20.625rem
   }
-  .sec-02__link {
+  .sec-02__link-wr {
     font-size: 2rem
   }
 }
@@ -1325,7 +1357,8 @@ body {
     display: none
   }
   .sec-02__link {
-    opacity: 0
+    opacity: 0;
+    pointer-events: none
   }
 }
 @media (max-width:52.56125em) {
@@ -1465,7 +1498,7 @@ body {
     -webkit-transform: translate(61%,-47%);
     transform: translate(61%,-47%)
   }
-  .sec-02__link {
+  .sec-02__link-wr {
     font-size: 1.5rem
   }
   .video-youtube__button::before {
@@ -1536,7 +1569,7 @@ body {
   .chips__btn-img {
     width: clamp(16.25rem ,14.0580338542rem + 7.2916666667vw ,20.625rem)
   }
-  .sec-02__link {
+  .sec-02__link-wr {
     font-size: clamp(1.5rem ,1.2494895833rem + .8333333333vw ,2rem)
   }
 }

@@ -938,22 +938,12 @@
     z-index: 5;
     left: 50%;
     
-    color: #fff;
-    text-transform: uppercase;
-    text-align: center;
-    width: max-content;
-    border-radius: toRem(50);
-    padding-inline: toRem(32);
-    padding-block: toRem(22);
     
-    box-shadow: 0 0 20px 0 rgba(236, 28, 45, 0.5);
-    background: linear-gradient(180deg, #ff2638 0%, #d11222 100%);
     transition: opacity .3s ease;
-    pointer-events: none;
-    @include adaptiveValue("font-size", 32, 24,0,1440.98,480.98);
     .video-play & {
       @media (min-width:toEm(820.98)){
         opacity: 0;
+        pointer-events: none;
       }
     }
     @media (min-width:toEm(820.98)){
@@ -966,7 +956,38 @@
     }
     @media (max-width: toEm(900.98)) and (max-height: toRem(480.98)) {
       opacity: 0;
+      pointer-events: none;
     }
+	}
+	// .sec-02__link-wr
+	&__link-wr {
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    width: max-content;
+    border-radius: toRem(50);
+    padding-inline: toRem(32);
+    padding-block: toRem(22);
+
+    animation: myAnim 2s ease 1s infinite normal forwards;
+    
+    box-shadow: 0 0 20px 0 rgba(236, 28, 45, 0.5);
+    background: linear-gradient(180deg, #ff2638 0%, #d11222 100%);
+    @include adaptiveValue("font-size", 32, 24,0,1440.98,480.98);
+	}
+}
+
+@keyframes myAnim {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
 	}
 }
 
