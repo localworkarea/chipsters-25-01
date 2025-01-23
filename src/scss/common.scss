@@ -39,13 +39,18 @@
     }
   }
 }
+
 .social {
   position: fixed;
   z-index: 20;
   left: 50%;
   transform: translate(-50%,0);
+  transition: bottom .75s ease;
   @media (min-width:$mobileSmall){
     bottom: toRem(70);
+    .fp-section-2 & {
+      bottom: toRem(30);
+    }
   }
   @media (max-width:$mobileSmall) and (min-width: toEm(375.98)) {
     bottom: toRem(50);
@@ -106,7 +111,6 @@
     }
   }
 }
-
 
 .scroll {
   position: absolute;
