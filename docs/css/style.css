@@ -966,38 +966,8 @@ body {
   border-radius: 3.125rem;
   padding-inline: 2rem;
   padding-block: 1.375rem;
-  -webkit-animation: myAnim 2s ease 1s infinite normal forwards;
-  animation: myAnim 2s ease 1s infinite normal forwards;
   box-shadow: 0 0 20px 0 rgba(236,28,45,.5);
   background: linear-gradient(180deg,#ff2638 0,#d11222 100%)
-}
-@-webkit-keyframes myAnim {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1)
-  }
-  50% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1)
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1)
-  }
-}
-@keyframes myAnim {
-  0% {
-    -webkit-transform: scale(1);
-    transform: scale(1)
-  }
-  50% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1)
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1)
-  }
 }
 .video-youtube {
   position: relative;
@@ -1131,6 +1101,55 @@ body {
   }
   .sec-01__label::before {
     left: 50%
+  }
+  .swiper-pagination {
+    position: absolute;
+    z-index: 6;
+    left: 50%;
+    bottom: 9.375rem;
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.1875rem;
+    border-radius: .5rem;
+    background-color: rgba(0,0,0,.15);
+    overflow: hidden;
+    width: 7.5rem
+  }
+  .swiper-pagination .swiper-pagination-bullet {
+    flex: 0 0 auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 4px;
+    position: relative;
+    transition: left .45s ease,-webkit-transform .45s ease;
+    transition: transform .45s ease,left .45s ease;
+    transition: transform .45s ease,left .45s ease,-webkit-transform .45s ease;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    background-color: #fff
+  }
+  .swiper-pagination .swiper-pagination-bullet:not(.swiper-pagination-bullet-active) {
+    opacity: .5
+  }
+  .swiper-pagination .swiper-pagination-bullet-active-next-next,
+  .swiper-pagination .swiper-pagination-bullet-active-prev-prev {
+    -webkit-transform: scale(.5);
+    transform: scale(.5)
+  }
+  .swiper-pagination .swiper-pagination-bullet-active-next,
+  .swiper-pagination .swiper-pagination-bullet-active-prev {
+    -webkit-transform: scale(1);
+    transform: scale(1)
+  }
+  .swiper-pagination .swiper-pagination-bullet-active {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3)
   }
 }
 @media (min-width:37.56125em) {
@@ -1506,6 +1525,9 @@ body {
   }
   .video-youtube__button::before {
     height: 3.75rem
+  }
+  .swiper-pagination {
+    display: none
   }
 }
 @media (max-width:23.49875em) {
